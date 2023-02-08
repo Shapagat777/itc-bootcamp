@@ -4,11 +4,14 @@ import BasketIcon from '../../images/basket.svg'
 import ProfileIcon from '../../images/profile.svg'
 import { useEffect, useState } from 'react'
 import { getDataFromBackend } from '../../utils/config'
+import { useNavigate } from 'react-router'
 
-function Header () {
+function Header (props) {
     const [searchText, setSearchText] = useState();
     const [data, setData] = useState([]);
     const [selectedFilm, setSelectedFilm] = useState();
+
+    const router = useNavigate();
 
     useEffect(() => {
         if (searchText) {
@@ -43,10 +46,10 @@ function Header () {
                     </div>
                 </div>
                 <div className='header__basketProfile__block'>
-                    <div className='header__icons'>
+                    <div className='header__icons' onClick={() => router('/basket')}>
                         <img src={BasketIcon} alt='' className='header__basket__logo'/>
                     </div>
-                    <div className='header__icons'>
+                    <div className='header__icons' onClick={() => router('/profile')}>
                         <img src={ProfileIcon} alt='' className='header__profile__logo'/>
                     </div>
                 </div>
