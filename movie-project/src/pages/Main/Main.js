@@ -6,6 +6,7 @@ import Categories from "../../components/Categories/Categories";
 // import { useEffect, useState } from "react";
 
 function Main (props) {
+
     return (
         <div className="background">
             <Header />

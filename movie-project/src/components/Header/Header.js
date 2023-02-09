@@ -2,9 +2,10 @@ import './Header.css'
 import Logo from '../../images/movie.png'
 import BasketIcon from '../../images/basket.svg'
 import ProfileIcon from '../../images/profile.svg'
-import { useEffect, useState } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { getDataFromBackend } from '../../utils/config'
 import { useNavigate } from 'react-router'
+import { ModalContext } from '../../providers/ModalProvider'
 
 function Header (props) {
     const [searchText, setSearchText] = useState();
@@ -22,6 +23,9 @@ function Header (props) {
             })
         }
     }, [searchText])
+
+    const value = useContext(ModalContext);
+    console.table(value);
 
     return (
         <div className="header__block">

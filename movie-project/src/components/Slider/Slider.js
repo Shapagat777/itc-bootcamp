@@ -1,20 +1,15 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {useEffect, useState} from "react";
-import {getDataFromBackend} from "../../utils/config";
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import './Slider.css';
+import { useContext } from "react";
+import { ModalContext } from "../../providers/ModalProvider";
 
 const Slider = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        getDataFromBackend().then(res => {
-            setItems(res)
-        })
-    }, [])
+    const {data} = useContext(ModalContext);
 
     return (
         <div className="slider_block">
@@ -26,7 +21,7 @@ const Slider = () => {
                 pagination={{clickable: true}}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}>
-                {items.map(el => {
+                {data.map(el => {
                     return <SwiperSlide>
                         <div className='movieBg'>
                             <img className={'movieImg'} src={el.image} alt=''/>
